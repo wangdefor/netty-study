@@ -8,6 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>netty-study-hello</module>
+        <module>netty-study-client</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -31,7 +32,7 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>4.1.10.Final</version>
+            <version>4.1.42.Final</version>
         </dependency>
     </dependencies>
 </project>
