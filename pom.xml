@@ -9,6 +9,8 @@
     <modules>
         <module>netty-study-hello</module>
         <module>netty-study-client</module>
+        <module>netty-study-more-client</module>
+        <module>netty-study-thrift</module>
     </modules>
 
     <packaging>pom</packaging>
