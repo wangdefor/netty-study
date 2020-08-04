@@ -14,6 +14,10 @@ import io.netty.util.CharsetUtil;
 import io.netty.util.concurrent.EventExecutorGroup;
 import org.example.MyServerHandler;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /**
  * @ClassName MyClient
  * @Description client
@@ -23,20 +27,25 @@ import org.example.MyServerHandler;
  **/
 public class MyClient {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
 
-        Bootstrap bootstrap = new Bootstrap();
-        bootstrap
-                .group(eventLoopGroup)
-                .channel(NioSocketChannel.class)
-                .handler(new MyClientInitialize());
+        try {
+            Bootstrap bootstrap = new Bootstrap();
+            bootstrap
+                    .group(eventLoopGroup)
+                    .channel(NioSocketChannel.class)
+                    .handler(new MyClientInitialize());
 
-        ChannelFuture channelFuture = bootstrap.connect("localhost", 8899).sync();
-        channelFuture.channel().closeFuture().sync();
-        eventLoopGroup.shutdownGracefully();
-
-
+            ChannelFuture channelFuture = bootstrap.connect("localhost", 8899).sync();
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            while (true){
+                channelFuture.channel().writeAndFlush(br.readLine() + "\n\r");
+                Channel read = channelFuture.channel();
+            }
+        }finally {
+            eventLoopGroup.shutdownGracefully();
+        }
     }
 
     private static class MyClientInitialize extends ChannelInitializer<SocketChannel> {
@@ -57,14 +66,14 @@ public class MyClient {
 
             @Override
             protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-                System.out.println("i has receive a msg");
-                ctx.channel().writeAndFlush("hello 你好");
+                System.out.println("i has receive a msg" + msg);
+                ctx.channel().writeAndFlush("login 123");
             }
 
             @Override
             public void channelActive(ChannelHandlerContext ctx) throws Exception {
                 super.channelActive(ctx);
-                ctx.writeAndFlush("Hello world");
+                ctx.writeAndFlush("login 123");
             }
         }
     }

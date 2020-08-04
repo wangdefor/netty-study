@@ -11,6 +11,9 @@
         <module>netty-study-client</module>
         <module>netty-study-more-client</module>
         <module>netty-study-thrift</module>
+        <module>netty-nio-study</module>
+        <module>netty-canal-test</module>
+        <module>netty-hello-world</module>
     </modules>
 
     <packaging>pom</packaging>

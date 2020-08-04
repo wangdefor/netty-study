@@ -16,8 +16,11 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 public class MyServer {
 
     public static void main(String[] args) throws InterruptedException {
+        //接收客户端的链接
         EventLoopGroup bossGroup = new NioEventLoopGroup();
-        NioEventLoopGroup workGroup = new NioEventLoopGroup();
+
+        //用户请求处理的业务逻辑
+        EventLoopGroup workGroup = new NioEventLoopGroup();
 
         ServerBootstrap serverBootstrap = new ServerBootstrap();
         serverBootstrap.group(bossGroup,workGroup)
