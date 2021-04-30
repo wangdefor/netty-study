@@ -1,7 +1,6 @@
 package org.example;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -23,10 +22,10 @@ public class NioDreTest {
         FileChannel inputChannel = inputStream.getChannel();
         FileChannel outputStreamChannel = outputStream.getChannel();
         ByteBuffer byteBuffer = ByteBuffer.allocateDirect(512);
-        while (true){
+        while (true) {
             byteBuffer.clear();
             int read = inputChannel.read(byteBuffer);
-            if(read == -1){
+            if (read == -1) {
                 break;
             }
             byteBuffer.flip();
@@ -34,6 +33,5 @@ public class NioDreTest {
         }
     }
 
-    
 
 }

@@ -11,11 +11,11 @@ import org.example.BaseCanalClientTest;
  */
 public abstract class AbstractKafkaTest extends BaseCanalClientTest {
 
-    public static String  topic     = "example";
+    public static String topic = "example";
     public static Integer partition = null;
-    public static String  groupId   = "g4";
-    public static String  servers   = "10.0.2.50:9092";
-    public static String  zkServers = "10.0.2.50:2181";
+    public static String groupId = "g4";
+    public static String servers = "10.0.2.50:9092";
+    public static String zkServers = "10.0.2.50:2181";
 
     public void sleep(long time) {
         try {

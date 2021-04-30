@@ -17,7 +17,7 @@ import org.apache.thrift.transport.TTransport;
 public class ThriftClient {
 
     public static void main(String[] args) throws TException {
-        TTransport transport = new TFastFramedTransport(new TSocket("localhost",8899),600);
+        TTransport transport = new TFastFramedTransport(new TSocket("localhost", 8899), 600);
         TProtocol protocol = new TCompactProtocol(transport);
         CaculatorService.Client client = new CaculatorService.Client(protocol);
         transport.open();

@@ -17,33 +17,30 @@ import java.util.concurrent.TimeUnit;
  */
 public class CanalKafkaClientFlatMessageExample {
 
-    protected final static Logger           logger  = LoggerFactory.getLogger(CanalKafkaClientFlatMessageExample.class);
-
+    protected final static Logger logger = LoggerFactory.getLogger(CanalKafkaClientFlatMessageExample.class);
+    private static volatile boolean running = false;
     private KafkaCanalConnector connector;
-
-    private static volatile boolean         running = false;
-
-    private Thread                          thread  = null;
+    private Thread thread = null;
 
     private Thread.UncaughtExceptionHandler handler = new Thread.UncaughtExceptionHandler() {
 
-                                                        public void uncaughtException(Thread t, Throwable e) {
-                                                            logger.error("parse events has an error", e);
-                                                        }
-                                                    };
+        public void uncaughtException(Thread t, Throwable e) {
+            logger.error("parse events has an error", e);
+        }
+    };
 
     public CanalKafkaClientFlatMessageExample(String zkServers, String servers, String topic, Integer partition,
-                                              String groupId){
+                                              String groupId) {
         connector = new KafkaCanalConnector(servers, topic, partition, groupId, null, true);
     }
 
     public static void main(String[] args) {
         try {
             final CanalKafkaClientFlatMessageExample kafkaCanalClientExample = new CanalKafkaClientFlatMessageExample(AbstractKafkaTest.zkServers,
-                AbstractKafkaTest.servers,
-                AbstractKafkaTest.topic,
-                AbstractKafkaTest.partition,
-                AbstractKafkaTest.groupId);
+                    AbstractKafkaTest.servers,
+                    AbstractKafkaTest.topic,
+                    AbstractKafkaTest.partition,
+                    AbstractKafkaTest.groupId);
             logger.info("## start the kafka consumer: {}-{}", AbstractKafkaTest.topic, AbstractKafkaTest.groupId);
             kafkaCanalClientExample.start();
             logger.info("## the canal kafka consumer is running now ......");

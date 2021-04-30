@@ -15,7 +15,7 @@ import java.nio.channels.FileChannel;
 public class NioMappedTest {
 
     public static void main(String[] args) throws IOException {
-        RandomAccessFile randomAccessFile = new RandomAccessFile("NioTest9.txt","rw");
+        RandomAccessFile randomAccessFile = new RandomAccessFile("NioTest9.txt", "rw");
         MappedByteBuffer map = randomAccessFile.getChannel().map(FileChannel.MapMode.READ_WRITE, 0, 5);
         map.put("sdds".getBytes());
         map.flip();

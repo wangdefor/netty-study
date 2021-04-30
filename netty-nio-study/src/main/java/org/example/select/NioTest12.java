@@ -3,7 +3,10 @@ package org.example.select;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
-import java.nio.channels.*;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -36,24 +39,24 @@ public class NioTest12 {
             System.out.println("监听端口：" + ports[i]);
         }
 
-        while (true){
+        while (true) {
             int numbers = selector.select();
             System.out.println("numbers:" + numbers);
 
             Set<SelectionKey> keys = selector.selectedKeys();
 
             Iterator<SelectionKey> iterator = keys.iterator();
-            while (iterator.hasNext()){
+            while (iterator.hasNext()) {
                 SelectionKey next = iterator.next();
-                if(next.isAcceptable()){
+                if (next.isAcceptable()) {
                     ServerSocketChannel channel = (ServerSocketChannel) next.channel();
                     SocketChannel socketChannel = channel.accept();
                     socketChannel.configureBlocking(false);
 
-                    socketChannel.register(selector,SelectionKey.OP_READ);
+                    socketChannel.register(selector, SelectionKey.OP_READ);
                     iterator.remove();
                     System.out.println("获取客户端连接");
-                }else if(next.isReadable()){
+                } else if (next.isReadable()) {
                     SocketChannel socketChannel = (SocketChannel) next.channel();
                     //读取对象
 

@@ -1,21 +1,14 @@
 package org.example;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import com.alibaba.otter.canal.protocol.CanalEntry;
-import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
+import com.alibaba.otter.canal.client.kafka.KafkaCanalConnector;
+import com.alibaba.otter.canal.protocol.Message;
 import org.example.kafka.AbstractKafkaTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
-import com.alibaba.otter.canal.client.kafka.KafkaCanalConnector;
-import com.alibaba.otter.canal.protocol.Message;
-import org.springframework.util.CollectionUtils;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.example.BaseCanalClientTest.printEntry;
 import static org.example.BaseCanalClientTest.printSummary;
@@ -28,13 +21,10 @@ import static org.example.BaseCanalClientTest.printSummary;
  */
 public class CanalKafkaClientExample {
 
-    protected final static Logger           logger  = LoggerFactory.getLogger(CanalKafkaClientExample.class);
-
-    private KafkaCanalConnector             connector;
-
-    private static volatile boolean         running = false;
-
-    private Thread                          thread  = null;
+    protected final static Logger logger = LoggerFactory.getLogger(CanalKafkaClientExample.class);
+    private static volatile boolean running = false;
+    private KafkaCanalConnector connector;
+    private Thread thread = null;
 
     private Thread.UncaughtExceptionHandler handler = new Thread.UncaughtExceptionHandler() {
 
@@ -43,7 +33,7 @@ public class CanalKafkaClientExample {
         }
     };
 
-    public CanalKafkaClientExample(String zkServers, String servers, String topic, Integer partition, String groupId){
+    public CanalKafkaClientExample(String zkServers, String servers, String topic, Integer partition, String groupId) {
         connector = new KafkaCanalConnector(servers, topic, partition, groupId, null, false);
     }
 

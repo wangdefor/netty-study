@@ -21,7 +21,7 @@ public class TestServer {
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
         ServerBootstrap serverBootstrap = new ServerBootstrap();
-        serverBootstrap.group(bossGroup,workerGroup).channel(NioServerSocketChannel.class)
+        serverBootstrap.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
                 .childHandler(new TestServerInitalizer());
 
         ChannelFuture channelFuture = serverBootstrap.bind(8899).sync();

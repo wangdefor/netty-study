@@ -1,7 +1,6 @@
 package org.example.client;
 
 import io.netty.bootstrap.Bootstrap;
-import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
@@ -11,8 +10,6 @@ import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.util.CharsetUtil;
-import io.netty.util.concurrent.EventExecutorGroup;
-import org.example.MyServerHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -39,11 +36,11 @@ public class MyClient {
 
             ChannelFuture channelFuture = bootstrap.connect("localhost", 8899).sync();
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            while (true){
+            while (true) {
                 channelFuture.channel().writeAndFlush(br.readLine() + "\n\r");
                 Channel read = channelFuture.channel();
             }
-        }finally {
+        } finally {
             eventLoopGroup.shutdownGracefully();
         }
     }
@@ -54,7 +51,7 @@ public class MyClient {
         protected void initChannel(SocketChannel ch) throws Exception {
             ChannelPipeline pipeline = ch.pipeline();
             pipeline
-                    .addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE,0,4,0,4))
+                    .addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4))
                     .addLast(new LengthFieldPrepender(4))
                     .addLast(new StringDecoder(CharsetUtil.UTF_8))
                     .addLast(new StringEncoder(CharsetUtil.UTF_8))

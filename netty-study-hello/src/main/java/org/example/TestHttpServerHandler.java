@@ -19,12 +19,12 @@ import java.util.Collection;
 public class TestHttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
-        if(msg instanceof DefaultHttpRequest){
+        if (msg instanceof DefaultHttpRequest) {
             ByteBuf byteBuf = Unpooled.copiedBuffer("Hello world", CharsetUtil.UTF_8);
             FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,
-                    HttpResponseStatus.OK,byteBuf);
-            response.headers().set(HttpHeaderNames.CONTENT_TYPE,"text/plain");
-            response.headers().set(HttpHeaderNames.CONTENT_LENGTH,byteBuf.readableBytes());
+                    HttpResponseStatus.OK, byteBuf);
+            response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
+            response.headers().set(HttpHeaderNames.CONTENT_LENGTH, byteBuf.readableBytes());
             ctx.writeAndFlush(response);
             Collection<Object> values = ctx.channel().config().getOptions().values();
             System.out.println(values);
