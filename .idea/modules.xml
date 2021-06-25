@@ -3,12 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/netty-canal-test/netty-canal-test.iml" filepath="$PROJECT_DIR$/netty-canal-test/netty-canal-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/netty-game/netty-game.iml" filepath="$PROJECT_DIR$/netty-game/netty-game.iml" />
       <module fileurl="file://$PROJECT_DIR$/netty-hello-world/netty-hello-world.iml" filepath="$PROJECT_DIR$/netty-hello-world/netty-hello-world.iml" />
       <module fileurl="file://$PROJECT_DIR$/netty-nio-study/netty-nio-study.iml" filepath="$PROJECT_DIR$/netty-nio-study/netty-nio-study.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/netty-study.iml" filepath="$PROJECT_DIR$/.idea/netty-study.iml" />
       <module fileurl="file://$PROJECT_DIR$/netty-study-client/netty-study-client.iml" filepath="$PROJECT_DIR$/netty-study-client/netty-study-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/netty-study-hello/netty-study-hello.iml" filepath="$PROJECT_DIR$/netty-study-hello/netty-study-hello.iml" />
       <module fileurl="file://$PROJECT_DIR$/netty-study-more-client/netty-study-more-client.iml" filepath="$PROJECT_DIR$/netty-study-more-client/netty-study-more-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/netty-study-project.iml" filepath="$PROJECT_DIR$/netty-study-project.iml" />
       <module fileurl="file://$PROJECT_DIR$/netty-study-thrift/netty-study-thrift.iml" filepath="$PROJECT_DIR$/netty-study-thrift/netty-study-thrift.iml" />
     </modules>
   </component>

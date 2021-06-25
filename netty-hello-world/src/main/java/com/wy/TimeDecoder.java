@@ -19,6 +19,7 @@ public class TimeDecoder extends ByteToMessageDecoder {
         if (byteBuf.readableBytes() < 4) {
             return;
         }
-        list.add(new UnixTime(byteBuf.readUnsignedInt()));
+        byteBuf.readUnsignedInt();
+        list.add(new UnixTime(2));
     }
 }
